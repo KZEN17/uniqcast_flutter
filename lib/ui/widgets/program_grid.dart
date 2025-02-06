@@ -35,85 +35,6 @@ class ProgramGrid extends HookConsumerWidget {
         date1.day == date2.day;
   }
 }
-
-// class ProgramTile extends StatelessWidget {
-//   final Program program;
-
-//   const ProgramTile({super.key, required this.program});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final duration = program.stop.difference(program.start);
-//     final width = duration.inMinutes * 2.0;
-
-//     return Padding(
-//       padding: const EdgeInsets.only(bottom: 5.0),
-//       child: GestureDetector(
-//         onTap: () => showDialog(
-//           context: context,
-//           builder: (context) => ProgramDetailsDialog(program: program),
-//         ),
-//         child: Container(
-//           width: width,
-//           height: 80,
-//           margin: const EdgeInsets.all(1),
-//           decoration: BoxDecoration(
-//             color: EPGTheme.programTileColor,
-//             borderRadius: BorderRadius.circular(4),
-//           ),
-//           child: Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: Stack(
-//               children: [
-//                 Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text(
-//                       program.title.first.value,
-//                       style: TextStyle(
-//                         fontWeight: FontWeight.bold,
-//                         color: EPGTheme.textPrimary,
-//                       ),
-//                       overflow: TextOverflow.ellipsis,
-//                     ),
-//                     const SizedBox(height: 4),
-//                     Text(
-//                       '${program.start.hour}:${program.start.minute.toString().padLeft(2, '0')} - '
-//                       '${program.stop.hour}:${program.stop.minute.toString().padLeft(2, '0')}',
-//                       style: TextStyle(
-//                         fontSize: 12,
-//                         color: EPGTheme.textSecondary,
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//                 if (program.previouslyShown ?? false)
-//                   Positioned(
-//                     bottom: 0,
-//                     child: Container(
-//                       padding:
-//                           const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-//                       decoration: BoxDecoration(
-//                         color: EPGTheme.surfaceColor,
-//                         borderRadius: BorderRadius.circular(4),
-//                       ),
-//                       child: Text(
-//                         'Rerun',
-//                         style: TextStyle(
-//                           fontSize: 10,
-//                           color: EPGTheme.textSecondary,
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 class ProgramTile extends StatelessWidget {
   final Program program;
 
@@ -149,10 +70,13 @@ class ProgramTile extends StatelessWidget {
           decoration: BoxDecoration(
             color: EPGTheme.programTileColor,
             borderRadius: BorderRadius.circular(4),
+            border: Border.all(
+              color: isPlaying ? EPGTheme.selectedBlue : Colors.transparent,
+              width: 1,
+            ),
           ),
           child: Row(
             children: [
-              if (isPlaying)
                 Container(
                   width: 3,
                   decoration: const BoxDecoration(
