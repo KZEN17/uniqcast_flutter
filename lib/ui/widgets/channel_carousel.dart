@@ -32,7 +32,7 @@ class ChannelCarousel extends HookConsumerWidget {
             child: Center(
               child: SizedBox(
                 width: 70,
-                height: 35,
+                height: 45,
                 child: channel.icon?.url != null
                     ? Image.network(
                         channel.icon!.url,
